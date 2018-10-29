@@ -1,0 +1,40 @@
+profiling:/nfs/stak/users/porv/CS362-004-F2018/projects/porv/dominion/rngs.gcda:Version mismatch - expected 408R got 402*
+profiling:/nfs/stak/users/porv/CS362-004-F2018/projects/porv/dominion/dominion.gcda:Version mismatch - expected 408R got 402*
+Unit Test #1: scoreFor Function
+Test Case 1 Running...
+Player 1's score should be +7
+Player 1 Score: 0
+Unit Test #1 Case 1 Failed!
+Test Case 2 Running...
+Player 2's score should be +14
+Player 2 Score: 0
+Unit Test #1 Case 2 Failed!
+--Unit Test #1 End--
+Unit Test #2: getWinners Function
+Test Case 1 Running...
+Populating hand of Player 1
+Populating hand of Player 2
+Player 1's score should be +7
+Player 2's score should be +14
+Calculating winner...Unit Test #2 Case 1 Passed!
+Test Case 2 Running...
+Populating hand of Player 1
+Populating hand of Player 2
+Player 1's score should be +10
+Player 2's score should be 0
+Calculating winner...Unit Test #2 Case 2 Failed!
+--Unit Test #2 End--
+Unit Test #3: updateCoins Function
+Test Case 1 Running...
+Populating hand of Player 1
+Updating the coin count of Player 1...Unit Test #3 Case 1 Failed!
+Test Case 2 Running...
+Populating hand of Player 2
+Updating the coin count of Player 2...Unit Test #3 Case 2 Failed!
+--Unit Test #3 End--
+Unit Test #4: isGameOver Function
+Test Case 1: Stack of Province cards is empty, should end game.
+Unit Test #4 Case 1 Passed!
+Test Case 2: Stack of Province cards is not empty, game should not end.
+Unit Test #4 Case 2 Failed!
+--Unit Test #4 End--
