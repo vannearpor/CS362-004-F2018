@@ -1,0 +1,75 @@
+        -:    0:Source:unittest3.c
+        -:    0:Graph:unittest3.gcno
+        -:    0:Data:unittest3.gcda
+        -:    0:Runs:2
+        -:    0:Programs:1
+        -:    1:// Author: Vannear Por
+        -:    2:// Description: This is unit test #3 which will test the
+        -:    3:// updateCoins function. This test will prepopulate treasure cards into
+        -:    4:// the hands of 2 players and test to see if updateCoins generates
+        -:    5:// the correct coin count.
+        -:    6:
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include "rngs.h"
+        -:   10:#include <string.h>
+        -:   11:#include <stdio.h>
+        -:   12:#include <math.h>
+        -:   13:#include <stdlib.h>
+        -:   14:#include <assert.h>
+        -:   15:
+        2:   16:int main (int argc, char** argv) {
+        -:   17:    struct gameState testGame;
+        2:   18:    int player1 = 0;
+        2:   19:    int player2 = 1;
+        -:   20:    
+        2:   21:    printf("Unit Test #3: updateCoins Function\n");
+        -:   22:    
+        2:   23:    printf("Test Case 1 Running...\n");
+        2:   24:    printf("Populating hand of Player 1\n");
+        2:   25:    testGame.hand[0][0] = copper; //+1
+        2:   26:    testGame.hand[0][1] = silver; //+2
+        2:   27:    testGame.hand[0][2] = gold; //+3
+        2:   28:    testGame.hand[0][3] = gold; //+3
+        2:   29:    testGame.hand[0][4] = silver; //+2
+        2:   30:    testGame.hand[0][5] = copper; //+1
+        -:   31:    //Player 1 should have a total of 12 coins.
+        -:   32:    
+        2:   33:    printf("Updating the coin count of Player 1...");
+        -:   34:    
+        2:   35:    updateCoins(player1, &testGame, 0);
+        -:   36:    
+        2:   37:    if(testGame.coins == 12) {
+    #####:   38:        printf("Unit Test #3 Case 1 Passed!\n");
+        -:   39:    }
+        -:   40:    else {
+        2:   41:        printf("Unit Test #3 Case 1 Failed!\n");
+        -:   42:    }
+        -:   43:    
+        2:   44:    printf("Test Case 2 Running...\n");
+        2:   45:    printf("Populating hand of Player 2\n");
+        2:   46:    testGame.hand[1][0] = silver; //+2
+        2:   47:    testGame.hand[1][1] = silver; //+2
+        2:   48:    testGame.hand[1][2] = gold; //+3
+        2:   49:    testGame.hand[1][3] = gold; //+3
+        2:   50:    testGame.hand[1][4] = gold; //+3
+        2:   51:    testGame.hand[1][5] = silver; //+2
+        -:   52:    //Player 2 should have a total of 15 coins.
+        -:   53:    
+        2:   54:    printf("Updating the coin count of Player 2...");
+        -:   55:    
+        2:   56:    updateCoins(player2, &testGame, 0);
+        -:   57:    
+        2:   58:    if(testGame.coins == 15) {
+    #####:   59:        printf("Unit Test #3 Case 2 Passed!\n");
+        -:   60:    }
+        -:   61:    else {
+        2:   62:        printf("Unit Test #3 Case 2 Failed!\n");
+        -:   63:    }
+        -:   64:    
+        2:   65:    printf("--Unit Test #3 End--\n");
+        -:   66:    
+        2:   67:    return 0;
+        -:   68:}
+        -:   69:
+        -:   70:

@@ -1,0 +1,57 @@
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:2
+        -:    0:Programs:1
+        -:    1:// Author: Vannear Por
+        -:    2:// Description: This is unit test #4 which will test the
+        -:    3:// isGameOver function. This test will alter the card piles to amounts which
+        -:    4:// should end the game, or keep the game going, and test whether the isGameOver
+        -:    5:// function correctly determines if the game has ended or not.
+        -:    6:
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include "rngs.h"
+        -:   10:#include <string.h>
+        -:   11:#include <stdio.h>
+        -:   12:#include <math.h>
+        -:   13:#include <stdlib.h>
+        -:   14:#include <assert.h>
+        -:   15:
+        2:   16:int main (int argc, char** argv) {
+        -:   17:    struct gameState testGame;
+        2:   18:    int gameOverFlag = 0;
+        -:   19:    
+        2:   20:    printf("Unit Test #4: isGameOver Function\n");
+        2:   21:    printf("Test Case 1: Stack of Province cards is empty, should end game.\n");
+        -:   22:    
+        2:   23:    testGame.supplyCount[province] = 0;
+        -:   24:    
+        2:   25:    gameOverFlag = isGameOver(&testGame);
+        -:   26:    
+        2:   27:    if(gameOverFlag == 1) {
+        2:   28:        printf("Unit Test #4 Case 1 Passed!\n");
+        -:   29:    }
+        -:   30:    else {
+    #####:   31:        printf("Unit Test #4 Case 1 Failed!\n");
+        -:   32:    }
+        -:   33:    
+        2:   34:    printf("Test Case 2: Stack of Province cards is not empty, game should not end.\n");
+        -:   35:    
+        2:   36:    testGame.supplyCount[province] = 2;
+        -:   37:    
+        2:   38:    gameOverFlag = isGameOver(&testGame);
+        -:   39:    
+        2:   40:    if(gameOverFlag == 0) {
+    #####:   41:        printf("Unit Test #4 Case 2 Passed!\n");
+        -:   42:    }
+        -:   43:    else {
+        2:   44:        printf("Unit Test #4 Case 2 Failed!\n");
+        -:   45:    }
+        -:   46:    
+        2:   47:    printf("--Unit Test #4 End--\n");
+        -:   48:    
+        2:   49:    return 0;
+        -:   50:}
+        -:   51:
+        -:   52:

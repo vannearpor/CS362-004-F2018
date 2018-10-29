@@ -1,0 +1,51 @@
+        -:    0:Source:cardtest2.c
+        -:    0:Graph:cardtest2.gcno
+        -:    0:Data:cardtest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// Author: Vannear Por
+        -:    2:// Description: This is card test #2. This program will test the Village card.
+        -:    3:
+        -:    4:#include "dominion.h"
+        -:    5:#include "dominion_helpers.h"
+        -:    6:#include "rngs.h"
+        -:    7:#include <string.h>
+        -:    8:#include <stdio.h>
+        -:    9:#include <math.h>
+        -:   10:#include <stdlib.h>
+        -:   11:#include <assert.h>
+        -:   12:
+        1:   13:int main (int argc, char** argv) {
+        1:   14:    printf("Card Test #2: Village Card\n");
+        -:   15:    
+        -:   16:    struct gameState testGame;
+        1:   17:    int currentPlayer = 0;  //Player 1
+        1:   18:    int handPos = 0;    //village is card 0
+        1:   19:    testGame.numActions = 1;
+        1:   20:    testGame.handCount[0] = 6;
+        -:   21:    
+        1:   22:    printf("Test Case 1 Running...\n");
+        1:   23:    testGame.hand[0][0] = village;
+        1:   24:    testGame.hand[0][1] = silver;
+        1:   25:    testGame.hand[0][2] = gold;
+        1:   26:    testGame.hand[0][3] = silver;
+        1:   27:    testGame.hand[0][4] = gold;
+        1:   28:    testGame.hand[0][5] = village;
+        -:   29:    
+        1:   30:    useVillage(currentPlayer, handPos, &testGame);
+        -:   31:    
+        -:   32:    //Hand card count should increase by 1, and numActions should increase by 2.
+        -:   33:    
+        1:   34:    if(testGame.numActions == 3) {
+        1:   35:        printf("Test Case 1 Passed!\n");
+        -:   36:    }
+        -:   37:    else {
+    #####:   38:        printf("Test Case 1 Failed!\n");
+        -:   39:    }
+        -:   40:    
+        1:   41:    printf("--Card Test #2 End--\n");
+        -:   42:    
+        1:   43:    return 0;
+        -:   44:}
+        -:   45:
+        -:   46:

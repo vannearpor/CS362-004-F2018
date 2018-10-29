@@ -1,0 +1,73 @@
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:2
+        -:    0:Programs:1
+        -:    1:// Author: Vannear Por
+        -:    2:// Description: This is unit test #1 which will test the
+        -:    3:// scoreFor function. This test will prepopulate score cards in
+        -:    4:// a player's hand and the test will see if it returns the
+        -:    5:// correct score value.
+        -:    6:
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include "rngs.h"
+        -:   10:#include <string.h>
+        -:   11:#include <stdio.h>
+        -:   12:#include <math.h>
+        -:   13:#include <stdlib.h>
+        -:   14:#include <assert.h>
+        -:   15:
+        2:   16:int main (int argc, char** argv) {
+        -:   17:    struct gameState testGame;
+        2:   18:    int p1_score = 0;
+        2:   19:    int p2_score = 0;
+        -:   20:    
+        2:   21:    printf("Unit Test #1: scoreFor Function\n");
+        -:   22:    
+        2:   23:    printf("Test Case 1 Running...\n");
+        2:   24:    testGame.hand[0][0] = province; //score +6
+        2:   25:    testGame.hand[0][1] = great_hall; //score +1
+        2:   26:    testGame.hand[0][2] = curse; //score -1
+        2:   27:    testGame.hand[0][3] = duchy; //score +3
+        2:   28:    testGame.hand[0][4] = curse; //score -1
+        2:   29:    testGame.hand[0][5] = curse; //score -1
+        -:   30:    //Total should be 7.
+        -:   31:    
+        2:   32:    p1_score = scoreFor(0, &testGame); //Calls function scoring player 1's hand
+        2:   33:    printf("Player 1's score should be +7\n");
+        2:   34:    printf("Player 1 Score: %d\n", p1_score);
+        -:   35:    
+        2:   36:    if (p1_score == 7) {
+    #####:   37:        printf("Unit Test #1 Case 1 Passed!\n");
+        -:   38:    }
+        -:   39:    else {
+        2:   40:        printf("Unit Test #1 Case 1 Failed!\n");
+        -:   41:    }
+        -:   42:    
+        2:   43:    printf("Test Case 2 Running...\n");
+        2:   44:    testGame.hand[1][0] = estate; //score +1
+        2:   45:    testGame.hand[1][1] = province; //score +6
+        2:   46:    testGame.hand[1][2] = province; //score +6
+        2:   47:    testGame.hand[1][3] = curse; //score -1
+        2:   48:    testGame.hand[1][4] = great_hall; //score +1
+        2:   49:    testGame.hand[1][5] = estate; //score +1
+        -:   50:    //Total should be 14
+        -:   51:    
+        2:   52:    p2_score = scoreFor(1, &testGame); //Calls function scoring player 2's hand
+        2:   53:    printf("Player 2's score should be +14\n");
+        2:   54:    printf("Player 2 Score: %d\n", p2_score);
+        -:   55:    
+        2:   56:    if (p2_score == 14) {
+    #####:   57:        printf("Unit Test #1 Case 2 Passed!\n");
+        -:   58:    }
+        -:   59:    else {
+        2:   60:        printf("Unit Test #1 Case 2 Failed!\n");
+        -:   61:    }
+        -:   62:    
+        2:   63:    printf("--Unit Test #1 End--\n");
+        -:   64:    
+        2:   65:    return 0;
+        -:   66:}
+        -:   67:
+        -:   68:
