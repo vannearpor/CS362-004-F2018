@@ -1,8 +1,9 @@
 To compile, type:
 	make
-then <enter>.
+
+then press ENTER.
 
 To run after compiling, type:
 	./test
-then <enter>.
 
+then press ENTER.
