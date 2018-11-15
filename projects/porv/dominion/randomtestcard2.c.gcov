@@ -1,7 +1,7 @@
         -:    0:Source:randomtestcard2.c
         -:    0:Graph:randomtestcard2.gcno
         -:    0:Data:randomtestcard2.gcda
-        -:    0:Runs:1
+        -:    0:Runs:2
         -:    0:Programs:1
         -:    1:/*This random test tests the Village card function*/
         -:    2:
@@ -16,9 +16,9 @@
         -:   11:#include <time.h>
         -:   12:#include <stdbool.h>
         -:   13:
-        1:   14:int main() {
+        2:   14:int main() {
         -:   15:    struct gameState testGame;
-        1:   16:    int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
+        2:   16:    int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
         -:   17:        sea_hag, tribute, smithy};
         -:   18:    
         -:   19:    int i;
@@ -26,66 +26,66 @@
         -:   21:    int deckTotal, handTotal;
         -:   22:    int startDeck, finishDeck;
         -:   23:    int startHand, finishHand;
-        1:   24:    int startDiscardPile = 0;
+        2:   24:    int startDiscardPile = 0;
         -:   25:    int finishDiscardPile;
         -:   26:    int handPos;
         -:   27:    
-        1:   28:    int failCount = 0;
-        1:   29:    int passCount = 0;
+        2:   28:    int failCount = 0;
+        2:   29:    int passCount = 0;
         -:   30:    
-        1:   31:    int players = 2;
-        1:   32:    int currentPlayer = 0;
-        1:   33:    int testSeed = 100;
+        2:   31:    int players = 2;
+        2:   32:    int currentPlayer = 0;
+        2:   33:    int testSeed = 100;
         -:   34:    
-        1:   35:    srand(time(NULL));
+        2:   35:    srand(time(NULL));
         -:   36:    
         -:   37:    //Run test iterations
-    50001:   38:    for(i = 0; i < 50000; i++){
-    50000:   39:        initializeGame(players, k, testSeed, &testGame);
-    50000:   40:        testFlag = true;
-    50000:   41:        deckTotal = rand() % 501;   //get random deck total between 0 and 500;
-    50000:   42:        handTotal = rand() % 501;   //get random hand total between 0 and 500;
+   100002:   38:    for(i = 0; i < 50000; i++){
+   100000:   39:        initializeGame(players, k, testSeed, &testGame);
+   100000:   40:        testFlag = true;
+   100000:   41:        deckTotal = rand() % 501;   //get random deck total between 0 and 500;
+   100000:   42:        handTotal = rand() % 501;   //get random hand total between 0 and 500;
         -:   43:        
         -:   44:        //get numbers for deck and hand
-    50000:   45:        testGame.deckCount[0] = deckTotal - handTotal;
-    50000:   46:        startDeck = testGame.deckCount[0];
-    50000:   47:        testGame.handCount[0] = handTotal;
-    50000:   48:        startHand = testGame.handCount[0];
-    50000:   49:        handPos = testGame.hand[currentPlayer][testGame.handCount[currentPlayer] - 1];
+   100000:   45:        testGame.deckCount[0] = deckTotal - handTotal;
+   100000:   46:        startDeck = testGame.deckCount[0];
+   100000:   47:        testGame.handCount[0] = handTotal;
+   100000:   48:        startHand = testGame.handCount[0];
+   100000:   49:        handPos = testGame.hand[currentPlayer][testGame.handCount[currentPlayer] - 1];
         -:   50:        
-    50000:   51:        testGame.playedCardCount = startDiscardPile;
+   100000:   51:        testGame.playedCardCount = startDiscardPile;
         -:   52:        
         -:   53:        //Call function
-    50000:   54:        useVillage(currentPlayer, handPos, &testGame);
+   100000:   54:        useVillage(currentPlayer, handPos, &testGame);
         -:   55:        
         -:   56:        //Deck and hand counts after function is called
-    50000:   57:        finishDeck = testGame.deckCount[0];
-    50000:   58:        finishHand = testGame.handCount[0];
-    50000:   59:        finishDiscardPile = testGame.playedCardCount;
+   100000:   57:        finishDeck = testGame.deckCount[0];
+   100000:   58:        finishHand = testGame.handCount[0];
+   100000:   59:        finishDiscardPile = testGame.playedCardCount;
         -:   60:        
         -:   61:        //check for fail states
-    50000:   62:        if (finishDeck != (startDeck-1)){
-    25008:   63:            testFlag = false;
+   100000:   62:        if (finishDeck != (startDeck-1)){
+    50334:   63:            testFlag = false;
         -:   64:        }
         -:   65:        
-    50000:   66:        if (finishHand != (startHand+1)){
-    25008:   67:            testFlag = false;
+   100000:   66:        if (finishHand != (startHand+1)){
+    50334:   67:            testFlag = false;
         -:   68:        }
         -:   69:        
-    50000:   70:        if (finishDiscardPile != 0){
+   100000:   70:        if (finishDiscardPile != 0){
     #####:   71:            testFlag = false;
         -:   72:        }
         -:   73:        
-    50000:   74:        if (testFlag == false){
-    25008:   75:            failCount++;
-    25008:   76:            printf("\nTests Failed: %d\n", failCount);
+   100000:   74:        if (testFlag == false){
+    50334:   75:            failCount++;
+    50334:   76:            printf("\nTests Failed: %d\n", failCount);
         -:   77:        }
         -:   78:        else{
-    24992:   79:            passCount++;
-    24992:   80:            printf("\nTests Passed: %d\n", passCount);
+    49666:   79:            passCount++;
+    49666:   80:            printf("\nTests Passed: %d\n", passCount);
         -:   81:        }
         -:   82:        
         -:   83:    }
-        1:   84:    return 0;
+        2:   84:    return 0;
         -:   85:}
         -:   86:
