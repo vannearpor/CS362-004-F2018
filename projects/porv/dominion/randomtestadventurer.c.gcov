@@ -1,0 +1,105 @@
+        -:    0:Source:randomtestadventurer.c
+        -:    0:Graph:randomtestadventurer.gcno
+        -:    0:Data:randomtestadventurer.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*This random test tests the Adventurer card function.*/
+        -:    2:
+        -:    3:#include "dominion.h"
+        -:    4:#include "dominion_helpers.h"
+        -:    5:#include "rngs.h"
+        -:    6:#include <string.h>
+        -:    7:#include <stdio.h>
+        -:    8:#include <math.h>
+        -:    9:#include <assert.h>
+        -:   10:#include <stdlib.h>
+        -:   11:#include <time.h>
+        -:   12:#include <stdbool.h>
+        -:   13:
+        1:   14:int main() {
+        -:   15:    struct gameState testGame;
+        1:   16:    int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
+        -:   17:        sea_hag, tribute, smithy};
+        -:   18:    
+        -:   19:    int i, j;
+        -:   20:    bool testFlag;
+        -:   21:    int deckTotal, handTotal;
+        -:   22:    int startDeck, finishDeck;
+        -:   23:    int startHand, finishHand;
+        1:   24:    int startDiscardPile = 0;
+        -:   25:    int tempHand[500];
+        -:   26:    int finishDiscardPile;
+        -:   27:    int handPos;
+        -:   28:    
+        -:   29:    int pickedCard;
+        -:   30:    int nonTreasure;
+        -:   31:    
+        1:   32:    int failCount = 0;
+        1:   33:    int passCount = 0;
+        -:   34:    
+        1:   35:    int players = 2;
+        1:   36:    int currentPlayer = 0;
+        1:   37:    int testSeed = 100;
+        -:   38:    
+        1:   39:    srand(time(NULL));
+    50001:   40:    for(i = 0; i < 50000; i++){
+    50000:   41:        initializeGame(players, k, testSeed, &testGame);
+        -:   42:        
+    50000:   43:        testFlag = true;
+    50000:   44:        deckTotal = rand() % 501;
+    50000:   45:        handTotal = rand() % 501;
+        -:   46:        
+    50000:   47:        testGame.deckCount[0] = deckTotal - handTotal;
+    50000:   48:        startDeck = testGame.deckCount[0];
+    50000:   49:        testGame.handCount[0] = handTotal;
+    50000:   50:        startHand = testGame.handCount[0];
+    50000:   51:        handPos = testGame.hand[currentPlayer][testGame.handCount[currentPlayer] -1];
+        -:   52:        
+    50000:   53:        testGame.playedCardCount = startDiscardPile;
+        -:   54:        
+        -:   55:        //fill up deck with cards
+  4208978:   56:        for(j = 0; j < startDeck; j++){
+  4158978:   57:            pickedCard = rand() % 11;
+  4158978:   58:            if(pickedCard == 1){
+   378219:   59:                testGame.deck[0][j] = gold;
+        -:   60:            }
+  3780759:   61:            else if(pickedCard == 2){
+   377657:   62:                testGame.deck[0][j] = silver;
+        -:   63:            }
+  3403102:   64:            else if(pickedCard == 3){
+   379017:   65:                testGame.deck[0][j] = copper;
+        -:   66:            }
+        -:   67:            else {
+  3024085:   68:                nonTreasure = rand() % 10;
+  3024085:   69:                testGame.deck[0][j] = k[nonTreasure];
+        -:   70:            }
+        -:   71:        }
+        -:   72:        
+    50000:   73:        useAdventurer(0, 0, currentPlayer, &testGame, 0, tempHand);
+        -:   74:        
+    50000:   75:        finishDiscardPile = testGame.playedCardCount;
+    50000:   76:        finishDeck = testGame.deckCount[0];
+    50000:   77:        finishHand = testGame.handCount[0];
+        -:   78:        
+    50000:   79:        if(finishDeck != ((startDeck - finishDiscardPile)-2)){
+    48021:   80:            testFlag = false;
+        -:   81:        }
+        -:   82:        
+    50000:   83:        if(finishHand != (startHand+2)){
+    25716:   84:            testFlag = false;
+        -:   85:        }
+        -:   86:        
+    50000:   87:        if(finishDiscardPile == 0){
+    50000:   88:            testFlag = false;
+        -:   89:        }
+        -:   90:        
+    50000:   91:        if(testFlag == false){
+    50000:   92:            failCount++;
+    50000:   93:            printf("\nTests Failed: %d\n", failCount);
+        -:   94:        }
+        -:   95:        else {
+    #####:   96:            passCount++;
+    #####:   97:            printf("\nTests Passed: %d\n", passCount);
+        -:   98:        }
+        -:   99:    }
+        1:  100:}
