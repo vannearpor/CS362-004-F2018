@@ -1,0 +1,15 @@
+Unit Test #1: scoreFor Function
+Test Case 1 Running...
+Player 1's score should be +7
+Player 1 Score: 0
+Unit Test #1 Case 1 Failed!
+Test Case 2 Running...
+Player 2's score should be +14
+Player 2 Score: 0
+Unit Test #1 Case 2 Failed!
+--Unit Test #1 End--
+profiling: /Users/VirajithaKarnatapu/Documents/CS362-004-U2018-master/dominion/rngs.gcda: cannot open: No such file or directory
+File 'unittest1.c'
+Lines executed:87.88% of 33
+unittest1.c:creating 'unittest1.c.gcov'
+
